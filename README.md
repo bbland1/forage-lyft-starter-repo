@@ -14,6 +14,6 @@ So first I worked through building a more object-oriented UML that would allow t
 
 After refactoring the final task was to add tires to the possible parts of the car, and do it with Test-Driven Development, based on specific wear data and it's format. I started by creating the tests for the tires based on the specs and previous tests done on the engines and batteries. Then built the Tire class and specific interfaces confirming if they passed the tests or not. Once they passed those tests, I added new tests to the car factory to confirm that the creation of a car with a tire was working and passing the proper information.
 
-## Opinion on the simulation
+## Thoughts after completing virtual experience
 
 Over all this was really good and valuable look into what it is like to work at Lyft as a back-end engineer. It allowed me some experience with things that are new to me like UML design, but also allowed me to continue to use and grow skills I have chose to work on like unit testing, refactoring, object-oriented programming.
