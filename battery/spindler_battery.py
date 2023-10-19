@@ -1,6 +1,6 @@
 from battery.battery import Battery
 
-class NubbinBattery(Battery):
+class SpindlerBattery(Battery):
     def __init__(self, current_date, last_service_date):
         self._current_date = current_date
         self._last_service_date = last_service_date
