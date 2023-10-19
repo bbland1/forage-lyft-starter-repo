@@ -12,5 +12,10 @@ class TestCarriganTire(unittest.TestCase):
         tire = CarriganTire(tire_wear_sensors=[0.1, 0.1, 0.1, 0.1])
         self.assertFalse(tire.needs_service())
 
+    def test_value_issue_error(self):
+        with self.assertRaises(ValueError):
+            tire = CarriganTire(tire_wear_sensors=[1,0, 2,0.5])
+            tire.needs_service()
+
 if __name__ == '__main__':
     unittest.main()
