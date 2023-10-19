@@ -21,16 +21,16 @@ class TestCarriganTire(unittest.TestCase):
 
 class TestOctoprimeTire(unittest.TestCase):
     def test_octoprime__should_be_serviced(self):
-        tire = OctoprimeTires(tire_wear_sensors=[1, 0.9, 0.9, 0.4])
+        tire = OctoprimeTires(tires_wear_sensors=[1, 0.9, 0.9, 0.4])
         self.assertTrue(tire.needs_service())
 
     def test_octoprime__should_not_be_serviced(self):
-        tire = OctoprimeTires(tire_wear_sensors=[0.1, 0.1, 0.1, 0.1])
+        tire = OctoprimeTires(tires_wear_sensors=[0.1, 0.1, 0.1, 0.1])
         self.assertFalse(tire.needs_service())
 
     def test_value_issue_error(self):
         with self.assertRaises(ValueError):
-            tire = OctoprimeTires(tire_wear_sensors=[1, 0, 2, 0.5])
+            tire = OctoprimeTires(tires_wear_sensors=[1, 0, 2, 0.5])
             tire.needs_service()
 
 
