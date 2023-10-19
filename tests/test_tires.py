@@ -8,5 +8,9 @@ class TestCarriganTire(unittest.TestCase):
         tire = CarriganTire(tire_wear_sensors=[0.1, 0.5, 0, 0.4])
         self.assertTrue(tire.needs_service())
 
+    def test_carrigan_should_not_be_serviced(self):
+        tire = CarriganTire(tire_wear_sensors=[0.1, 0.1, 0.1, 0.1])
+        self.assertFalse(tire.needs_service())
+
 if __name__ == '__main__':
     unittest.main()
