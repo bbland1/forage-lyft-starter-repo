@@ -14,7 +14,7 @@ factory = CarFactory()
 class TestCarFactory(unittest.TestCase):
     def test_creating_calliope(self):
         current_date = date.today()
-        last_service_date = current_date.replace(year=current_date.year - 2).replace(
+        last_service_date = current_date.replace(year=current_date.year - 3).replace(
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
@@ -36,7 +36,7 @@ class TestCarFactory(unittest.TestCase):
 
     def test_creating_glissade(self):
         current_date = date.today()
-        last_service_date = current_date.replace(year=current_date.year - 2).replace(
+        last_service_date = current_date.replace(year=current_date.year - 3).replace(
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
@@ -58,7 +58,7 @@ class TestCarFactory(unittest.TestCase):
 
     def test_creating_palindrome(self):
         current_date = date.today()
-        last_service_date = current_date.replace(year=current_date.year - 2).replace(
+        last_service_date = current_date.replace(year=current_date.year - 3).replace(
             month=current_date.month - 4).replace(day=current_date.day + 7)
         warning_indicator_on = False
 
