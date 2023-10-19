@@ -10,8 +10,8 @@ from battery.nubbin_battery import NubbinBattery
 
 class CarFactory:
     def create_calliope(self, current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int) -> Car:
-        engine_type = CapuletEngine(last_service_date, current_mileage, last_service_mileage)
-        battery_type = SpindlerBattery(last_service_date, current_date)
+        engine_type = CapuletEngine(current_mileage, last_service_mileage)
+        battery_type = SpindlerBattery(current_date, last_service_date)
         return Car(engine_type, battery_type)
 
     def create_glissade(self, current_date: date, last_service_date: date, current_mileage: int, last_service_mileage: int) -> Car:
