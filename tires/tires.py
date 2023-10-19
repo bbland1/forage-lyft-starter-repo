@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
-class Tire(ABC):
+
+class Tires(ABC):
     @abstractmethod
     def needs_service(self) -> bool:
         pass

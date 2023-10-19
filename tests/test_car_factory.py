@@ -2,13 +2,13 @@ import unittest
 from datetime import date
 
 from car_factory import CarFactory
-from engine.capulet_engine import CapuletEngine
-from engine.sternman_engine import SternmanEngine
-from engine.willoughby_engine import WilloughbyEngine
-from battery.nubbin_battery import NubbinBattery
-from battery.spindler_battery import SpindlerBattery
-from tire.carrigan_tire import CarriganTire
-from tire.octoprime_tire import OctoprimeTire
+from engines.capulet_engine import CapuletEngine
+from engines.sternman_engine import SternmanEngine
+from engines.willoughby_engine import WilloughbyEngine
+from batteries.nubbin_battery import NubbinBattery
+from batteries.spindler_battery import SpindlerBattery
+from tires.carrigan_tires import CarriganTires
+from tires.octoprime_tires import OctoprimeTires
 
 factory = CarFactory()
 
@@ -20,10 +20,10 @@ class TestCarFactory(unittest.TestCase):
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
-        tire_wear_sensor = [0.9, 0.1, 0.2, 0.5]
+        tires_wear_sensors = [0.9, 0.1, 0.2, 0.5]
 
         calliope = factory.create_calliope(
-            current_date, last_service_date, current_mileage, last_service_mileage)
+            current_date, last_service_date, current_mileage, last_service_mileage, tires_wear_sensors)
 
         self.assertIsInstance(calliope._engine, CapuletEngine)
         self.assertEqual(calliope._engine._current_mileage, current_mileage)
@@ -35,8 +35,8 @@ class TestCarFactory(unittest.TestCase):
                         last_service_date)
         self.assertEqual(calliope._battery._current_date, current_date)
 
-        self.assertIsInstance(calliope._tire, CarriganTire)
-        self.assertEqual(calliope._tire._tire_wear_sensors, tire_wear_sensor)
+        self.assertIsInstance(calliope._tires, CarriganTires)
+        self.assertEqual(calliope._tires._tires_wear_sensors, tires_wear_sensors)
 
         self.assertTrue(calliope.needs_service())
 
@@ -46,10 +46,10 @@ class TestCarFactory(unittest.TestCase):
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
-        tire_wear_sensor = [0.9, 0.1, 0.2, 0.5]
+        tires_wear_sensors = [0.9, 0.1, 0.2, 0.5]
 
         glissade = factory.create_glissade(
-            current_date, last_service_date, current_mileage, last_service_mileage)
+            current_date, last_service_date, current_mileage, last_service_mileage, tires_wear_sensors)
 
         self.assertIsInstance(glissade._engine, WilloughbyEngine)
         self.assertEqual(glissade._engine._current_mileage, current_mileage)
@@ -61,9 +61,8 @@ class TestCarFactory(unittest.TestCase):
                         last_service_date)
         self.assertEqual(glissade._battery._current_date, current_date)
 
-
-        self.assertIsInstance(glissade._tire, OctoprimeTire)
-        self.assertEqual(glissade._tire._tire_wear_sensors, tire_wear_sensor)
+        self.assertIsInstance(glissade._tires, OctoprimeTires)
+        self.assertEqual(glissade._tires._tires_wear_sensors, tires_wear_sensors)
 
         self.assertTrue(glissade.needs_service())
 
@@ -72,22 +71,22 @@ class TestCarFactory(unittest.TestCase):
         last_service_date = current_date.replace(year=current_date.year - 3).replace(
             month=current_date.month - 4).replace(day=current_date.day + 7)
         warning_indicator_on = False
-        tire_wear_sensor = [0.9, 0.1, 0.2, 0.5]
+        tires_wear_sensors = [0.9, 0.1, 0.2, 0.5]
 
         palindrome = factory.create_palindrome(
-            current_date, last_service_date, warning_indicator_on)
+            current_date, last_service_date, warning_indicator_on, tires_wear_sensors)
 
         self.assertIsInstance(palindrome._engine, SternmanEngine)
-        self.assertEqual(palindrome._engine._warning_indicator_on, warning_indicator_on)
+        self.assertEqual(
+            palindrome._engine._warning_indicator_on, warning_indicator_on)
 
         self.assertIsInstance(palindrome._battery, SpindlerBattery)
         self.assertEqual(palindrome._battery._last_service_date,
                         last_service_date)
         self.assertEqual(palindrome._battery._current_date, current_date)
 
-
-        self.assertIsInstance(palindrome._tire, CarriganTire)
-        self.assertEqual(palindrome._tire._tire_wear_sensors, tire_wear_sensor)
+        self.assertIsInstance(palindrome._tires, CarriganTires)
+        self.assertEqual(palindrome._tires._tires_wear_sensors, tires_wear_sensors)
 
         self.assertTrue(palindrome.needs_service())
 
@@ -97,10 +96,10 @@ class TestCarFactory(unittest.TestCase):
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
-        tire_wear_sensor = [0.9, 0.1, 0.2, 0.5]
+        tires_wear_sensors = [0.9, 0.1, 0.2, 0.5]
 
         rorschach = factory.create_rorschach(
-            current_date, last_service_date, current_mileage, last_service_mileage)
+            current_date, last_service_date, current_mileage, last_service_mileage, tires_wear_sensors)
 
         self.assertIsInstance(rorschach._engine, WilloughbyEngine)
         self.assertEqual(rorschach._engine._current_mileage, current_mileage)
@@ -112,8 +111,8 @@ class TestCarFactory(unittest.TestCase):
                         last_service_date)
         self.assertEqual(rorschach._battery._current_date, current_date)
 
-        self.assertIsInstance(rorschach._tire, OctoprimeTire)
-        self.assertEqual(rorschach._tire._tire_wear_sensors, tire_wear_sensor)
+        self.assertIsInstance(rorschach._tires, OctoprimeTires)
+        self.assertEqual(rorschach._tires._tires_wear_sensors, tires_wear_sensors)
 
         self.assertFalse(rorschach.needs_service())
 
@@ -123,10 +122,10 @@ class TestCarFactory(unittest.TestCase):
             month=current_date.month - 4).replace(day=current_date.day + 7)
         current_mileage = 23000
         last_service_mileage = 12450
-        tire_wear_sensor = [0.9, 0.1, 0.2, 0.5]
+        tires_wear_sensors = [0.8, 0.1, 0.2, 0.5]
 
         thovex = factory.create_thovex(
-            current_date, last_service_date, current_mileage, last_service_mileage)
+            current_date, last_service_date, current_mileage, last_service_mileage, tires_wear_sensors)
 
         self.assertIsInstance(thovex._engine, CapuletEngine)
         self.assertEqual(thovex._engine._current_mileage, current_mileage)
@@ -138,8 +137,7 @@ class TestCarFactory(unittest.TestCase):
                         last_service_date)
         self.assertEqual(thovex._battery._current_date, current_date)
 
-
-        self.assertIsInstance(thovex._tire, CarriganTire)
-        self.assertEqual(thovex._tire._tire_wear_sensors, tire_wear_sensor)
+        self.assertIsInstance(thovex._tires, CarriganTires)
+        self.assertEqual(thovex._tires._tires_wear_sensors, tires_wear_sensors)
 
         self.assertFalse(thovex.needs_service())
